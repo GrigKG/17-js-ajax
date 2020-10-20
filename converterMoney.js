@@ -1,8 +1,22 @@
 const baseUrl ='http://data.fixer.io/api/';
 const res = document.getElementById('res')
+fetch(`${baseUrl}/latest?access_key=b2363d8b2a90c7933e433c401cb7609f`, {
+}).then(response => response.json())
+     .then(json=>json.rates)
+    .then(rates=> {
+        let allCodes=Object.keys(rates);
+        for (let i=0; i<allCodes.length;i++) {
+            const option = document.createElement('option')
+            option.text = allCodes[i];
+            option.value = allCodes[i];
+            from.append(option);
+            to.add(new Option(allCodes[i], allCodes[i]));
+        }
+    })
+
 calc.onclick = function () {
-        fromCODE = from.value.trim(),
-        toCODE =  to.value.trim(),
+        fromCODE = from.value,
+        toCODE =  to.value,
         sumVal =sum.value.trim(),
     fetch(`${baseUrl}/latest?access_key=b2363d8b2a90c7933e433c401cb7609f&symbols=${fromCODE},${toCODE}`, {
     })
